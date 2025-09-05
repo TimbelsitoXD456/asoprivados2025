@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PQR - AsoPrivados Ocaña 2025</title>
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Russo One', sans-serif;
+    }
+
+    body {
+      background: #f4fdf7;
+      color: #222;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    /* CONTENIDO */
+    main {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    main h2 {
+      color: #27ae60;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    /* FORMULARIO */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    input,
+    textarea,
+    select {
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    button {
+      padding: 0.8rem;
+      background: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1e8449;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #27ae60;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>🏆 AsoPrivados Ocaña 2025 🏆</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="instituciones.html">Instituciones</a>
+      <a href="partidos.html">Partidos</a>
+      <a href="posiciones.html">Posiciones</a>
+      <a href="noticias.html">Noticias</a>
+      <a href="imagenes.html">Imágenes</a>
+      <a href="pqr.html">PQR</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main>
+    <h2>📩 Peticiones, Quejas y Reclamos</h2>
+    <form action="#" method="post">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" name="correo" required>
+
+      <label for="tipo">Tipo de solicitud:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="">Seleccione una opción</option>
+        <option value="peticion">Petición</option>
+        <option value="queja">Queja</option>
+        <option value="reclamo">Reclamo</option>
+      </select>
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 AsoPrivados Ocaña | Todos los derechos reservados</p>
+  </footer>
+</body>
+
+</html>

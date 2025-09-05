@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posiciones - AsoPrivados Ocaña 2025</title>
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Russo One', sans-serif;
+    }
+
+    body {
+      background: #f4fdf7;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    /* CONTENIDO */
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    main h2 {
+      color: #27ae60;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #27ae60;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    tr:hover {
+      background: #eafaf1;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #27ae60;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>🏆 AsoPrivados Ocaña 2025 🏆</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="instituciones.html">Instituciones</a>
+      <a href="posiciones.html">Posiciones</a>
+      <a href="partidos.html"> Partidos</a>
+      <a href="noticias.html">Noticias</a>
+      <a href="imagenes.html">Imágenes</a>
+      <a href="pqr.html">PQR</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main>
+    <h2>Tabla de Posiciones</h2>
+    <table id="tabla-posiciones">
+      <thead>
+        <tr>
+          <th>Posición</th>
+          <th>Institución</th>
+          <th>Puntos</th>
+          <th>Goles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>-</td><td>Colegio Nacional José Eusebio Caro</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Alfonso López</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Cristo Rey</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio La Presentación</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Carlos Julio Torrado Peñaranda</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Francisco de Paula Santander</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Don Bosco</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Santa Clara</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Simón Bolívar</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio La Salle</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio José María Córdoba</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Agustina Ferro</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Normal Superior</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Integrado Juan XXIII</td><td>0</td><td>0</td></tr>
+        <tr><td>-</td><td>Colegio Técnico Industrial</td><td>0</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 AsoPrivados Ocaña | Todos los derechos reservados</p>
+  </footer>
+
+  <!-- SCRIPT PARA ORDENAR -->
+  <script>
+    function ordenarTabla() {
+      let tabla = document.getElementById("tabla-posiciones").getElementsByTagName("tbody")[0];
+      let filas = Array.from(tabla.rows);
+
+      filas.sort((a, b) => {
+        let puntosA = parseInt(a.cells[2].innerText);
+        let puntosB = parseInt(b.cells[2].innerText);
+        let golesA = parseInt(a.cells[3].innerText);
+        let golesB = parseInt(b.cells[3].innerText);
+
+        if (puntosB !== puntosA) {
+          return puntosB - puntosA; // Primero puntos
+        } else {
+          return golesB - golesA; // Luego goles
+        }
+      });
+
+      filas.forEach((fila, index) => {
+        fila.cells[0].innerText = index + 1; // Actualiza la posición
+        tabla.appendChild(fila);
+      });
+    }
+
+    ordenarTabla();
+  </script>
+</body>
+
+</html>

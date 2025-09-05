@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias - AsoPrivados Ocaña 2025</title>
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Russo One', sans-serif;
+    }
+
+    body {
+      background: #f4fdf7;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
+      color: white;
+      padding: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav {
+      margin-top: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    /* CONTENIDO */
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    main h2 {
+      color: #27ae60;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .noticia {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .noticia h3 {
+      color: #27ae60;
+      margin-bottom: 0.5rem;
+    }
+
+    .fecha {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .noticia p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-right: 8px;
+      color: white;
+    }
+
+    .victoria {
+      background: #2ecc71;
+    }
+
+    .derrota {
+      background: #e74c3c;
+    }
+
+    .clasificacion {
+      background: #f1c40f;
+      color: #222;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #27ae60;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>🏆 AsoPrivados Ocaña 2025 🏆</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="instituciones.html">Instituciones</a>
+      <a href="partidos.html">Partidos</a>
+      <a href="posiciones.html">Posiciones</a>
+      <a href="noticias.html">Noticias</a>
+      <a href="imagenes.html">Imágenes</a>
+      <a href="pqr.html">PQR</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main>
+    <h2>📰 Noticias del Torneo</h2>
+
+    <div class="noticia">
+      <h3>La Salle avanza a la siguiente ronda</h3>
+      <div class="fecha">📅 2 de Septiembre 2025</div>
+      <p>El colegio <b>La Salle</b> logró una victoria emocionante frente a José María Córdoba con un marcador de <b>3-1</b>, clasificando a la siguiente fase del torneo.</p>
+      <span class="tag victoria">Victoria</span>
+      <span class="tag clasificacion">Clasificación</span>
+    </div>
+
+    <div class="noticia">
+      <h3>Simón Bolívar eliminado del campeonato</h3>
+      <div class="fecha">📅 1 de Septiembre 2025</div>
+      <p>El equipo del <b>Colegio Simón Bolívar</b> no logró superar a la Normal Superior y quedó eliminado tras caer <b>2-0</b>. A pesar de la derrota, mostraron gran entrega en la cancha.</p>
+      <span class="tag derrota">Eliminado</span>
+    </div>
+
+    <div class="noticia">
+      <h3>Cristo Rey sorprende y gana en penales</h3>
+      <div class="fecha">📅 31 de Agosto 2025</div>
+      <p>En un partido lleno de emoción, el <b>Colegio Cristo Rey</b> venció a Don Bosco en penales por <b>5-4</b>, asegurando su paso a cuartos de final.</p>
+      <span class="tag victoria">Victoria</span>
+      <span class="tag clasificacion">Clasificación</span>
+    </div>
+
+    <div class="noticia">
+      <h3>Santa Clara derrota a Carlos Julio Torrado</h3>
+      <div class="fecha">📅 30 de Agosto 2025</div>
+      <p>Con un resultado de <b>3-2</b>, <b>Santa Clara</b> venció a Carlos Julio Torrado en un partido muy reñido y continúa con paso firme en el campeonato.</p>
+      <span class="tag victoria">Victoria</span>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 AsoPrivados Ocaña | Todos los derechos reservados</p>
+  </footer>
+</body>
+
+</html>
