@@ -134,8 +134,8 @@
     <nav>
       <a href="index.html">Inicio</a>
       <a href="instituciones.html">Instituciones</a>
-      <a href="partidos.html">Partidos</a>
       <a href="posiciones.html">Posiciones</a>
+      <a href="partidos.html">Partidos</a>
       <a href="noticias.html">Noticias</a>
       <a href="imagenes.html">Imágenes</a>
       <a href="pqr.html">PQR</a>
@@ -145,7 +145,7 @@
   <!-- CONTENIDO -->
   <main>
     <h2>📩 Peticiones, Quejas y Reclamos</h2>
-    <form action="#" method="post">
+    <form id="pqrForm" autocomplete="off">
       <label for="nombre">Nombre completo:</label>
       <input type="text" id="nombre" name="nombre" required>
 
@@ -165,12 +165,114 @@
 
       <button type="submit">Enviar</button>
     </form>
+    <div id="mensajeExito" style="display:none;color:#27ae60;text-align:center;font-weight:bold;margin-top:1rem;">
+      ¡Mensaje enviado correctamente!
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <button id="exportarBtn" style="background:#ddd;color:#222;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">Exportar mensajes (administrador)</button>
+      <div id="mensajeExportado" style="display:none;color:#c0392b;text-align:center;font-weight:bold;margin-top:1rem;">
+        Los mensajes ya fueron exportados. No se puede volver a exportar.
+      </div>
+    </div>
+    <!-- Modal para verificación -->
+    <div id="modalVerificacion" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);z-index:1000;justify-content:center;align-items:center;">
+      <div style="background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.15);max-width:350px;margin:auto;text-align:center;">
+        <h3 style="color:#27ae60;margin-bottom:1rem;">Código de verificación</h3>
+        <input type="password" id="codigoVerificacion" placeholder="Código secreto" style="padding:0.6rem;width:90%;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;">
+        <div style="color:#c0392b;margin-bottom:1rem;display:none;" id="errorCodigo">Código incorrecto.</div>
+        <button id="btnVerificarCodigo" style="background:#27ae60;color:white;padding:0.5rem 1.2rem;border:none;border-radius:8px;cursor:pointer;">Verificar</button>
+        <button id="btnCancelarCodigo" style="background:#f1c40f;color:#222;padding:0.5rem 1.2rem;border:none;border-radius:8px;cursor:pointer;margin-left:0.7rem;">Cancelar</button>
+      </div>
+    </div>
   </main>
 
   <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 AsoPrivados Ocaña | Todos los derechos reservados</p>
   </footer>
+
+  <script>
+    // Guardar mensaje en LocalStorage
+    document.getElementById("pqrForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const correo = document.getElementById("correo").value.trim();
+      const tipo = document.getElementById("tipo").value;
+      const mensaje = document.getElementById("mensaje").value.trim();
+
+      const nuevoMensaje = { nombre, correo, tipo, mensaje };
+      let mensajes = [];
+      try {
+        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
+      } catch(e){}
+      mensajes.push(nuevoMensaje);
+      localStorage.setItem("mensajesPQR", JSON.stringify(mensajes));
+
+      document.getElementById("pqrForm").reset();
+      document.getElementById("mensajeExito").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("mensajeExito").style.display = "none";
+      }, 2000);
+    });
+
+    // Verificar si ya se exportó y deshabilitar el botón si es así
+    function verificarExportado() {
+      if (localStorage.getItem("mensajesPQR_exportado") === "true") {
+        document.getElementById("exportarBtn").disabled = true;
+        document.getElementById("exportarBtn").style.background = "#eee";
+        document.getElementById("exportarBtn").style.color = "#888";
+        document.getElementById("mensajeExportado").style.display = "block";
+      } else {
+        document.getElementById("exportarBtn").disabled = false;
+        document.getElementById("exportarBtn").style.background = "#ddd";
+        document.getElementById("exportarBtn").style.color = "#222";
+        document.getElementById("mensajeExportado").style.display = "none";
+      }
+    }
+    verificarExportado();
+
+    // Exportar mensajes a archivo JSON (solo admins con código)
+    document.getElementById("exportarBtn").addEventListener("click", function() {
+      if (localStorage.getItem("mensajesPQR_exportado") === "true") return; // No permitir exportar de nuevo
+      document.getElementById("modalVerificacion").style.display = "flex";
+      document.getElementById("codigoVerificacion").value = "";
+      document.getElementById("errorCodigo").style.display = "none";
+    });
+
+    document.getElementById("btnVerificarCodigo").addEventListener("click", function() {
+      const codigoIngresado = document.getElementById("codigoVerificacion").value;
+      const CODIGO_SECRETO = "SalvandoOtare_Beta-1234567890";
+      if (codigoIngresado === CODIGO_SECRETO) {
+        let mensajes = localStorage.getItem("mensajesPQR");
+        if (!mensajes) {
+          alert("No hay mensajes para exportar.");
+          document.getElementById("modalVerificacion").style.display = "none";
+          return;
+        }
+        const blob = new Blob([mensajes], {type: "application/json"});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "mensajes-pqr.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        // Marcar como exportado y deshabilitar botón
+        localStorage.setItem("mensajesPQR_exportado", "true");
+        verificarExportado();
+
+        document.getElementById("modalVerificacion").style.display = "none";
+      } else {
+        document.getElementById("errorCodigo").style.display = "block";
+      }
+    });
+
+    document.getElementById("btnCancelarCodigo").addEventListener("click", function() {
+      document.getElementById("modalVerificacion").style.display = "none";
+    });
+  </script>
 </body>
 
 </html>
