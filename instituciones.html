@@ -83,11 +83,72 @@
       font-size: 1.1rem;
       border-radius: 8px;
       transition: transform 0.2s ease;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     ul li:hover {
       transform: scale(1.02);
       background: #dff5e7;
+    }
+
+    .institucion-btn {
+      background: none;
+      border: none;
+      color: #222;
+      font-size: 1.1rem;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+    }
+
+    .mini-apartado {
+      display: none;
+      background: #f7fff7;
+      border-radius: 8px;
+      margin: 10px 0 0 0;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(39, 174, 96, 0.07);
+    }
+
+    .mini-apartado table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+
+    .mini-apartado th, .mini-apartado td {
+      padding: 7px 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .mini-apartado th {
+      background: #27ae60;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .mini-apartado tr:last-child td {
+      border-bottom: none;
+    }
+
+    .close-apartado {
+      background: #c0392b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 12px;
+      cursor: pointer;
+      margin-bottom: 8px;
+      font-size: 0.96rem;
+      float: right;
     }
 
     /* FOOTER */
@@ -125,16 +186,276 @@
   <main>
     <h2>Instituciones Participantes</h2>
     <ul>
-      <li>Colegio Nacional José Eusebio Caro</li>
-      <li>Colegio Alfonso López</li>
-      <li>Colegio Artístico Rafael Contreras Navarro</li>
-      <li>Colegio Integrado Padre Manuel Briceño Jáuregui</li>
-      <li>Colegio Agustina Ferro</li>
-      <li>Colegio Cristo Rey</li>
-      <li>Colegio La Presentación</li>
-      <li>Colegio Carlos Julio Torrado Peñaranda</li>
-      <li>Colegio Técnico Industrial</li>
-      <li>Colegio Técnico Comercial</li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-1')">Colegio Nacional José Eusebio Caro</button>
+        <div id="apartado-1" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-1')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Cristo Rey</td>
+              <td>2025-09-07</td>
+              <td>9:00 AM</td>
+              <td>Villa Margarita 1</td>
+            </tr>
+            <tr>
+              <td>Colegio Técnico Industrial</td>
+              <td>2025-09-14</td>
+              <td>11:30 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-2')">Colegio Alfonso López</button>
+        <div id="apartado-2" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-2')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio La Presentación</td>
+              <td>2025-09-08</td>
+              <td>8:45 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+            <tr>
+              <td>Colegio Integrado Padre Manuel Briceño Jáuregui</td>
+              <td>2025-09-15</td>
+              <td>10:00 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-3')">Colegio Artístico Rafael Contreras Navarro</button>
+        <div id="apartado-3" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-3')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Agustina Ferro</td>
+              <td>2025-09-09</td>
+              <td>9:30 AM</td>
+              <td>Villa Margarita 1</td>
+            </tr>
+            <tr>
+              <td>Colegio Cristo Rey</td>
+              <td>2025-09-16</td>
+              <td>10:15 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-4')">Colegio Integrado Padre Manuel Briceño Jáuregui</button>
+        <div id="apartado-4" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-4')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Alfonso López</td>
+              <td>2025-09-10</td>
+              <td>10:00 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+            <tr>
+              <td>Colegio Técnico Comercial</td>
+              <td>2025-09-17</td>
+              <td>11:00 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-5')">Colegio Agustina Ferro</button>
+        <div id="apartado-5" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-5')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Artístico Rafael Contreras Navarro</td>
+              <td>2025-09-11</td>
+              <td>11:00 AM</td>
+              <td>Villa Margarita 1</td>
+            </tr>
+            <tr>
+              <td>Colegio Carlos Julio Torrado Peñaranda</td>
+              <td>2025-09-18</td>
+              <td>10:30 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-6')">Colegio Cristo Rey</button>
+        <div id="apartado-6" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-6')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Nacional José Eusebio Caro</td>
+              <td>2025-09-07</td>
+              <td>9:00 AM</td>
+              <td>Villa Margarita 1</td>
+            </tr>
+            <tr>
+              <td>Colegio Artístico Rafael Contreras Navarro</td>
+              <td>2025-09-16</td>
+              <td>10:15 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-7')">Colegio La Presentación</button>
+        <div id="apartado-7" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-7')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Alfonso López</td>
+              <td>2025-09-08</td>
+              <td>8:45 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+            <tr>
+              <td>Colegio Técnico Comercial</td>
+              <td>2025-09-19</td>
+              <td>10:00 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-8')">Colegio Carlos Julio Torrado Peñaranda</button>
+        <div id="apartado-8" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-8')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Agustina Ferro</td>
+              <td>2025-09-18</td>
+              <td>10:30 AM</td>
+              <td>Villa Margarita 2</td>
+            </tr>
+            <tr>
+              <td>Colegio Técnico Industrial</td>
+              <td>2025-09-20</td>
+              <td>8:00 AM</td>
+              <td>Villa Margarita 1</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-9')">Colegio Técnico Industrial</button>
+        <div id="apartado-9" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-9')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Nacional José Eusebio Caro</td>
+              <td>2025-09-14</td>
+              <td>11:30 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+            <tr>
+              <td>Colegio Carlos Julio Torrado Peñaranda</td>
+              <td>2025-09-20</td>
+              <td>8:00 AM</td>
+              <td>Villa Margarita 1</td>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <button class="institucion-btn" onclick="mostrarApartado('apartado-10')">Colegio Técnico Comercial</button>
+        <div id="apartado-10" class="mini-apartado">
+          <button class="close-apartado" onclick="cerrarApartado('apartado-10')">X</button>
+          <strong>Próximos partidos:</strong>
+          <table>
+            <tr>
+              <th>Contra</th>
+              <th>Día</th>
+              <th>Hora</th>
+              <th>Cancha</th>
+            </tr>
+            <tr>
+              <td>Colegio Integrado Padre Manuel Briceño Jáuregui</td>
+              <td>2025-09-17</td>
+              <td>11:00 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+            <tr>
+              <td>Colegio La Presentación</td>
+              <td>2025-09-19</td>
+              <td>10:00 AM</td>
+              <td>26 de Julio</td>
+            </tr>
+          </table>
+        </div>
+      </li>
     </ul>
   </main>
 
@@ -142,6 +463,19 @@
   <footer>
     <p>&copy; 2025 AsoPrivados Ocaña | Todos los derechos reservados</p>
   </footer>
+  <script>
+    function mostrarApartado(id) {
+      // Oculta cualquier otro mini-apartado abierto
+      document.querySelectorAll('.mini-apartado').forEach(function(apartado) {
+        apartado.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function cerrarApartado(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  </script>
 </body>
 
 </html>
