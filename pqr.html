@@ -166,12 +166,12 @@
       <button type="submit">Enviar</button>
     </form>
     <div id="mensajeExito" style="display:none;color:#27ae60;text-align:center;font-weight:bold;margin-top:1rem;">
-      ¡Mensaje enviado correctamente!
+      ¡Mensaje enviado correctamente!. Mandaremos una respuesta pronto ;>
     </div>
     <div style="text-align:center;margin-top:2rem;">
       <button id="exportarBtn" style="background:#ddd;color:#222;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">Exportar mensajes (administrador)</button>
       <div id="mensajeExportado" style="display:none;color:#c0392b;text-align:center;font-weight:bold;margin-top:1rem;">
-        Los mensajes ya fueron exportados. No se puede volver a exportar.
+        Los mensajes ya fueron exportados. No se puede volver a exportar hasta que se reciba un nuevo mensaje.
       </div>
     </div>
     <!-- Modal para verificación -->
@@ -192,6 +192,29 @@
   </footer>
 
   <script>
+    // Verificar si ya se exportó y deshabilitar el botón si es así
+    function verificarExportado() {
+      // Solo permite exportar si hay mensajes sin exportar
+      var mensajes = [];
+      try {
+        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
+      } catch(e){}
+      var exportados = Number(localStorage.getItem("mensajesPQR_exportados")) || 0;
+      if (mensajes.length > exportados) {
+        document.getElementById("exportarBtn").disabled = false;
+        document.getElementById("exportarBtn").style.background = "#ddd";
+        document.getElementById("exportarBtn").style.color = "#222";
+        document.getElementById("mensajeExportado").style.display = "none";
+      } else {
+        document.getElementById("exportarBtn").disabled = true;
+        document.getElementById("exportarBtn").style.background = "#eee";
+        document.getElementById("exportarBtn").style.color = "#888";
+        document.getElementById("mensajeExportado").style.display = "block";
+      }
+    }
+
+    verificarExportado();
+
     // Guardar mensaje en LocalStorage
     document.getElementById("pqrForm").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -213,27 +236,19 @@
       setTimeout(() => {
         document.getElementById("mensajeExito").style.display = "none";
       }, 2000);
-    });
 
-    // Verificar si ya se exportó y deshabilitar el botón si es así
-    function verificarExportado() {
-      if (localStorage.getItem("mensajesPQR_exportado") === "true") {
-        document.getElementById("exportarBtn").disabled = true;
-        document.getElementById("exportarBtn").style.background = "#eee";
-        document.getElementById("exportarBtn").style.color = "#888";
-        document.getElementById("mensajeExportado").style.display = "block";
-      } else {
-        document.getElementById("exportarBtn").disabled = false;
-        document.getElementById("exportarBtn").style.background = "#ddd";
-        document.getElementById("exportarBtn").style.color = "#222";
-        document.getElementById("mensajeExportado").style.display = "none";
-      }
-    }
-    verificarExportado();
+      // Al agregar un mensaje, vuelve a permitir exportar
+      verificarExportado();
+    });
 
     // Exportar mensajes a archivo JSON (solo admins con código)
     document.getElementById("exportarBtn").addEventListener("click", function() {
-      if (localStorage.getItem("mensajesPQR_exportado") === "true") return; // No permitir exportar de nuevo
+      var mensajes = [];
+      try {
+        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
+      } catch(e){}
+      var exportados = Number(localStorage.getItem("mensajesPQR_exportados")) || 0;
+      if (mensajes.length <= exportados) return; // No permitir exportar de nuevo
       document.getElementById("modalVerificacion").style.display = "flex";
       document.getElementById("codigoVerificacion").value = "";
       document.getElementById("errorCodigo").style.display = "none";
@@ -242,14 +257,20 @@
     document.getElementById("btnVerificarCodigo").addEventListener("click", function() {
       const codigoIngresado = document.getElementById("codigoVerificacion").value;
       const CODIGO_SECRETO = "SalvandoOtare_Beta-1234567890";
+      var mensajes = [];
+      try {
+        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
+      } catch(e){}
+      var exportados = Number(localStorage.getItem("mensajesPQR_exportados")) || 0;
       if (codigoIngresado === CODIGO_SECRETO) {
-        let mensajes = localStorage.getItem("mensajesPQR");
-        if (!mensajes) {
-          alert("No hay mensajes para exportar.");
+        if (mensajes.length <= exportados) {
+          alert("No hay mensajes nuevos para exportar.");
           document.getElementById("modalVerificacion").style.display = "none";
           return;
         }
-        const blob = new Blob([mensajes], {type: "application/json"});
+        // Solo exporta los mensajes nuevos (desde el último exportado)
+        var nuevos = mensajes.slice(exportados);
+        const blob = new Blob([JSON.stringify(nuevos, null, 2)], {type: "application/json"});
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -259,8 +280,8 @@
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
 
-        // Marcar como exportado y deshabilitar botón
-        localStorage.setItem("mensajesPQR_exportado", "true");
+        // Marcar cuantos mensajes han sido exportados
+        localStorage.setItem("mensajesPQR_exportados", mensajes.length);
         verificarExportado();
 
         document.getElementById("modalVerificacion").style.display = "none";
