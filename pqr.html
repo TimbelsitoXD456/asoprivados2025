@@ -8,122 +8,24 @@
   <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Russo One', sans-serif;
-    }
-
-    body {
-      background: #f4fdf7;
-      color: #222;
-    }
-
-    /* HEADER */
-    header {
-      background: linear-gradient(90deg, #2ecc71, #27ae60);
-      color: white;
-      padding: 1.5rem 0;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    header h1 {
-      font-size: 2.2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-
-    nav {
-      margin-top: 1rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #f1c40f;
-    }
-
-    /* CONTENIDO */
-    main {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    main h2 {
-      color: #27ae60;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    /* FORMULARIO */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    label {
-      font-weight: bold;
-      color: #333;
-    }
-
-    input,
-    textarea,
-    select {
-      padding: 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-
-    textarea {
-      resize: none;
-      height: 120px;
-    }
-
-    button {
-      padding: 0.8rem;
-      background: #27ae60;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #1e8449;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #27ae60;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    footer p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Russo One', sans-serif; }
+    body { background: #f4fdf7; color: #222; }
+    header { background: linear-gradient(90deg, #2ecc71, #27ae60); color: white; padding: 1.5rem 0; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    header h1 { font-size: 2.2rem; display: flex; justify-content: center; align-items: center; gap: 10px; }
+    nav { margin-top: 1rem; }
+    nav a { color: white; text-decoration: none; margin: 0 1rem; font-weight: bold; transition: color 0.3s ease; }
+    nav a:hover { color: #f1c40f; }
+    main { max-width: 700px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    main h2 { color: #27ae60; margin-bottom: 1.5rem; text-align: center; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    label { font-weight: bold; color: #333; }
+    input, textarea, select { padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; font-family: inherit; }
+    textarea { resize: none; height: 120px; }
+    button { padding: 0.8rem; background: #27ae60; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease; }
+    button:hover { background: #1e8449; }
+    footer { background: #27ae60; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    footer p { margin: 0; font-size: 0.9rem; }
+    #mensajeExito { display:none; color:#27ae60; text-align:center; font-weight:bold; margin-top:1rem; }
   </style>
 </head>
 
@@ -145,7 +47,7 @@
   <!-- CONTENIDO -->
   <main>
     <h2>📩 Peticiones, Quejas y Reclamos</h2>
-    <form id="pqrForm" autocomplete="off">
+    <form id="pqrForm" method="POST" action="enviar.php">
       <label for="nombre">Nombre completo:</label>
       <input type="text" id="nombre" name="nombre" required>
 
@@ -155,9 +57,9 @@
       <label for="tipo">Tipo de solicitud:</label>
       <select id="tipo" name="tipo" required>
         <option value="">Seleccione una opción</option>
-        <option value="peticion">Petición</option>
-        <option value="queja">Queja</option>
-        <option value="reclamo">Reclamo</option>
+        <option value="Petición">Petición</option>
+        <option value="Queja">Queja</option>
+        <option value="Reclamo">Reclamo</option>
       </select>
 
       <label for="mensaje">Mensaje:</label>
@@ -165,24 +67,10 @@
 
       <button type="submit">Enviar</button>
     </form>
-    <div id="mensajeExito" style="display:none;color:#27ae60;text-align:center;font-weight:bold;margin-top:1rem;">
-      ¡Mensaje enviado correctamente!. Mandaremos una respuesta pronto ;>
-    </div>
+    <div id="mensajeExito">¡Mensaje enviado correctamente! Mandaremos una respuesta pronto ;></div>
+
     <div style="text-align:center;margin-top:2rem;">
-      <button id="exportarBtn" style="background:#ddd;color:#222;border:none;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;">Exportar mensajes (administrador)</button>
-      <div id="mensajeExportado" style="display:none;color:#c0392b;text-align:center;font-weight:bold;margin-top:1rem;">
-        Los mensajes ya fueron exportados. No se puede volver a exportar hasta que se reciba un nuevo mensaje.
-      </div>
-    </div>
-    <!-- Modal para verificación -->
-    <div id="modalVerificacion" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);z-index:1000;justify-content:center;align-items:center;">
-      <div style="background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.15);max-width:350px;margin:auto;text-align:center;">
-        <h3 style="color:#27ae60;margin-bottom:1rem;">Código de verificación</h3>
-        <input type="password" id="codigoVerificacion" placeholder="Código secreto" style="padding:0.6rem;width:90%;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;">
-        <div style="color:#c0392b;margin-bottom:1rem;display:none;" id="errorCodigo">Código incorrecto.</div>
-        <button id="btnVerificarCodigo" style="background:#27ae60;color:white;padding:0.5rem 1.2rem;border:none;border-radius:8px;cursor:pointer;">Verificar</button>
-        <button id="btnCancelarCodigo" style="background:#f1c40f;color:#222;padding:0.5rem 1.2rem;border:none;border-radius:8px;cursor:pointer;margin-left:0.7rem;">Cancelar</button>
-      </div>
+      <a href="login.html"><button type="button" style="background:#f39c12;">🔒 Ver Mensajes (Administrador)</button></a>
     </div>
   </main>
 
@@ -192,108 +80,14 @@
   </footer>
 
   <script>
-    // Verificar si ya se exportó y deshabilitar el botón si es así
-    function verificarExportado() {
-      // Solo permite exportar si hay mensajes sin exportar
-      var mensajes = [];
-      try {
-        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
-      } catch(e){}
-      var exportados = Number(localStorage.getItem("mensajesPQR_exportados")) || 0;
-      if (mensajes.length > exportados) {
-        document.getElementById("exportarBtn").disabled = false;
-        document.getElementById("exportarBtn").style.background = "#ddd";
-        document.getElementById("exportarBtn").style.color = "#222";
-        document.getElementById("mensajeExportado").style.display = "none";
-      } else {
-        document.getElementById("exportarBtn").disabled = true;
-        document.getElementById("exportarBtn").style.background = "#eee";
-        document.getElementById("exportarBtn").style.color = "#888";
-        document.getElementById("mensajeExportado").style.display = "block";
-      }
-    }
-
-    verificarExportado();
-
-    // Guardar mensaje en LocalStorage
-    document.getElementById("pqrForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const nombre = document.getElementById("nombre").value.trim();
-      const correo = document.getElementById("correo").value.trim();
-      const tipo = document.getElementById("tipo").value;
-      const mensaje = document.getElementById("mensaje").value.trim();
-
-      const nuevoMensaje = { nombre, correo, tipo, mensaje };
-      let mensajes = [];
-      try {
-        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
-      } catch(e){}
-      mensajes.push(nuevoMensaje);
-      localStorage.setItem("mensajesPQR", JSON.stringify(mensajes));
-
-      document.getElementById("pqrForm").reset();
+    // Mostrar mensaje de éxito si viene desde enviar.php
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("enviado") === "true") {
       document.getElementById("mensajeExito").style.display = "block";
       setTimeout(() => {
         document.getElementById("mensajeExito").style.display = "none";
-      }, 2000);
-
-      // Al agregar un mensaje, vuelve a permitir exportar
-      verificarExportado();
-    });
-
-    // Exportar mensajes a archivo JSON (solo admins con código)
-    document.getElementById("exportarBtn").addEventListener("click", function() {
-      var mensajes = [];
-      try {
-        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
-      } catch(e){}
-      var exportados = Number(localStorage.getItem("mensajesPQR_exportados")) || 0;
-      if (mensajes.length <= exportados) return; // No permitir exportar de nuevo
-      document.getElementById("modalVerificacion").style.display = "flex";
-      document.getElementById("codigoVerificacion").value = "";
-      document.getElementById("errorCodigo").style.display = "none";
-    });
-
-    document.getElementById("btnVerificarCodigo").addEventListener("click", function() {
-      const codigoIngresado = document.getElementById("codigoVerificacion").value;
-      const CODIGO_SECRETO = "SalvandoOtare_Beta-1234567890";
-      var mensajes = [];
-      try {
-        mensajes = JSON.parse(localStorage.getItem("mensajesPQR")) || [];
-      } catch(e){}
-      var exportados = Number(localStorage.getItem("mensajesPQR_exportados")) || 0;
-      if (codigoIngresado === CODIGO_SECRETO) {
-        if (mensajes.length <= exportados) {
-          alert("No hay mensajes nuevos para exportar.");
-          document.getElementById("modalVerificacion").style.display = "none";
-          return;
-        }
-        // Solo exporta los mensajes nuevos (desde el último exportado)
-        var nuevos = mensajes.slice(exportados);
-        const blob = new Blob([JSON.stringify(nuevos, null, 2)], {type: "application/json"});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "mensajes-pqr.json";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-
-        // Marcar cuantos mensajes han sido exportados
-        localStorage.setItem("mensajesPQR_exportados", mensajes.length);
-        verificarExportado();
-
-        document.getElementById("modalVerificacion").style.display = "none";
-      } else {
-        document.getElementById("errorCodigo").style.display = "block";
-      }
-    });
-
-    document.getElementById("btnCancelarCodigo").addEventListener("click", function() {
-      document.getElementById("modalVerificacion").style.display = "none";
-    });
+      }, 4000);
+    }
   </script>
 </body>
-
 </html>
